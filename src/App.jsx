@@ -6,23 +6,26 @@ import DefaultLayout from "./components/Layout/Defaultlayout";
 import Posts from "./components/pages/Posts";
 import AboutUs from "./components/pages/AboutUs";
 import PostDetail from "./components/variable/PostDetail";
+import { PostProvider } from "./components/Context/PostsContext";
 
 // app
 export default function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<DefaultLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/AboutUs" element={<AboutUs />} />
-            <Route path="/Posts">
-              <Route index element={<Posts />}></Route>
-              <Route path=":id" element={<PostDetail />}></Route>
+      <PostProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<DefaultLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/AboutUs" element={<AboutUs />} />
+              <Route path="/Posts">
+                <Route index element={<Posts />}></Route>
+                <Route path=":id" element={<PostDetail />}></Route>
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </PostProvider>
     </>
   );
 }

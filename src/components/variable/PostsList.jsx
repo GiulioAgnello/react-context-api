@@ -1,21 +1,8 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { NavLink } from "react-router";
-
-// Link per API
-let baseurlApi = "http://localhost:3000/posts";
+import { usePosts } from "../Context/PostsContext";
 
 export default function PostsList() {
-  const [posts, setPost] = useState([]);
-
-  function fetchpost() {
-    axios.get(`${baseurlApi}`).then((res) => {
-      console.log(res.data);
-
-      setPost(res.data.data);
-    });
-  }
-  useEffect(fetchpost, []);
+  const { posts } = usePosts();
   return (
     <>
       {posts.map((post) => (
